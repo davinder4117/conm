@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PROGRAM 17: MODIFIED EULER'S METHOD - CONM Programs</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f8f6;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+    }
+
+    center {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        color: #0b3d3a;
+        font-size: 30px;
+    }
+
+    h2 {
+        color: #14746f;
+    }
+
+    h3 {
+        color: #444;
+    }
+
+    a {
+        display: inline-block;
+        background-color: #14746f;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin: 3px;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        background-color: #2a9d8f;
+    }
+
+    body > h2 {
+        background-color: white;
+        padding: 12px;
+        border-left: 5px solid #14746f;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+
+    h3 {
+        margin-left: 10px;
+    }
+
+    xmp {
+        background-color: #e3f2ef;
+        color: #222;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 7px;
+        border: 1px solid #bfdcd6;
+        overflow-x: auto;
+        font-family: Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background-color: #a8d0c8;
+        margin: 30px 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+</style>
+
+<style>
+    .page { background:#fff; padding:20px; border-radius:10px; }
+    .nav { text-align:center; margin: 10px 0 20px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+<div class="page">
+<h2>PROGRAM 17: MODIFIED EULER'S METHOD</h2>
+<h3>C Program</h3>
+<xmp>
+#include<stdio.h>
+#include<math.h>
+
+double f(double x,double y)
+{
+    double y_dash;
+
+    y_dash=x*x+y;
+
+    return(y_dash);
+}
+
+void main()
+{
+    double x0,y0,y1,y10,x1,h,x,diff;
+    int i;
+
+    printf("\nMODIFIED EULER'S METHOD TO SOLVE DIFFERENTIAL EQUATION");
+
+    printf("\nEnter x0 = ");
+    scanf("%lf",&x0);
+
+    printf("\nEnter y0 = ");
+    scanf("%lf",&y0);
+
+    printf("\nEnter the value of x at which y is to be found = ");
+    scanf("%lf",&x);
+
+    printf("\nEnter the value of h = ");
+    scanf("%lf",&h);
+
+    i=0;
+
+    while(x0<x)
+    {
+        i++;
+
+        x1=x0+h;
+
+        y1=y0+h*f(x0,y0);
+
+        y10=y1;
+
+        do
+        {
+            y1=y0+(h/2)*(f(x0,y0)+f(x1,y10));
+
+            diff=fabs(y1-y10);
+
+            y10=y1;
+
+        }while(diff>0.0001);
+
+        printf("\n%d = %lf    y%d = %lf",i,x1,i,y1);
+
+        x0=x1;
+
+        y0=y1;
+    }
+}
+</xmp>
+
+<h3>Example Input</h3>
+<xmp>
+Enter x0 = 0
+
+Enter y0 = 1
+
+Enter the value of x at which y is to be found = 1
+
+Enter the value of h = 0.2
+</xmp>
+
+<h3>Output</h3>
+<xmp>
+1 = 0.200000    y1 = 1.226664
+2 = 0.400000    y2 = 1.521474
+3 = 0.600000    y3 = 1.917351
+4 = 0.800000    y4 = 2.454532
+5 = 1.000000    y5 = 3.182195
+</xmp>
+</div>
+
+<hr>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PROGRAM 3: NEWTON RAPHSON METHOD - CONM Programs</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f8f6;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+    }
+
+    center {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        color: #0b3d3a;
+        font-size: 30px;
+    }
+
+    h2 {
+        color: #14746f;
+    }
+
+    h3 {
+        color: #444;
+    }
+
+    a {
+        display: inline-block;
+        background-color: #14746f;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin: 3px;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        background-color: #2a9d8f;
+    }
+
+    body > h2 {
+        background-color: white;
+        padding: 12px;
+        border-left: 5px solid #14746f;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+
+    h3 {
+        margin-left: 10px;
+    }
+
+    xmp {
+        background-color: #e3f2ef;
+        color: #222;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 7px;
+        border: 1px solid #bfdcd6;
+        overflow-x: auto;
+        font-family: Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background-color: #a8d0c8;
+        margin: 30px 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+</style>
+
+<style>
+    .page { background:#fff; padding:20px; border-radius:10px; }
+    .nav { text-align:center; margin: 10px 0 20px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+<div class="page">
+<h2>PROGRAM 3: NEWTON RAPHSON METHOD</h2>
+<h3>C Program</h3>
+<xmp>
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<stdlib.h>
+
+#define f(x) (x*x*x-x-4)
+#define df(x) (3*x*x-1)
+
+void main()
+{
+    int k,n;
+    float x1,x2,epsilon,delta,err;
+
+    clrscr();
+
+    printf("\nEnter the value of x1: ");
+    scanf("%f",&x1);
+
+    printf("\nEnter the values of epsilon and delta: ");
+    scanf("%f,%f",&epsilon,&delta);
+
+    printf("\nEnter the number of iteration: ");
+    scanf("%d",&n);
+
+    for(k=1;k<=n;k++)
+    {
+        if(fabs(df(x1))<delta)
+        {
+            printf("\nSlope of curve is too small");
+            exit(0);
+        }
+
+        x2=x1-f(x1)/df(x1);
+
+        err=fabs((x2-x1)/x2);
+
+        if(err<epsilon)
+        {
+            printf("\nRoot=%f",x2);
+            exit(0);
+        }
+
+        x1=x2;
+    }
+
+    printf("\nSolution does not converge after %d iterations",n);
+
+    getch();
+}
+</xmp>
+
+<h3>Example Input</h3>
+<xmp>
+Enter the value of x1: 2
+
+Enter the values of epsilon and delta: 0.001,0.0001
+
+Enter the number of iteration: 20
+</xmp>
+
+<h3>Output</h3>
+<xmp>
+Root = 1.796322
+</xmp>
+</div>
+
+<hr>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+</body>
+</html>

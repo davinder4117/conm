@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PROGRAM 19: RUNGE KUTTA FOURTH ORDER METHOD - CONM Programs</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f8f6;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+    }
+
+    center {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        color: #0b3d3a;
+        font-size: 30px;
+    }
+
+    h2 {
+        color: #14746f;
+    }
+
+    h3 {
+        color: #444;
+    }
+
+    a {
+        display: inline-block;
+        background-color: #14746f;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin: 3px;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        background-color: #2a9d8f;
+    }
+
+    body > h2 {
+        background-color: white;
+        padding: 12px;
+        border-left: 5px solid #14746f;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+
+    h3 {
+        margin-left: 10px;
+    }
+
+    xmp {
+        background-color: #e3f2ef;
+        color: #222;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 7px;
+        border: 1px solid #bfdcd6;
+        overflow-x: auto;
+        font-family: Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background-color: #a8d0c8;
+        margin: 30px 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+</style>
+
+<style>
+    .page { background:#fff; padding:20px; border-radius:10px; }
+    .nav { text-align:center; margin: 10px 0 20px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+<div class="page">
+<h2>PROGRAM 19: RUNGE KUTTA FOURTH ORDER METHOD</h2>
+<h3>C Program</h3>
+<xmp>
+#include<stdio.h>
+
+#define f(x,y) ((y*y-x*x)/(y*y+x*x))
+
+void main()
+{
+    float x0,y0,xn,h,yn,k1,k2,k3,k4,k;
+    int i,n;
+
+    printf("Enter Initial Condition\n");
+
+    printf("x0 = ");
+    scanf("%f",&x0);
+
+    printf("y0 = ");
+    scanf("%f",&y0);
+
+    printf("Enter calculation point xn = ");
+    scanf("%f",&xn);
+
+    printf("Enter number of steps: ");
+    scanf("%d",&n);
+
+    h=(xn-x0)/n;
+
+    printf("\nx0\ty0\tyn\n");
+
+    for(i=0;i<n;i++)
+    {
+        k1=h*f(x0,y0);
+
+        k2=h*f((x0+h/2),(y0+k1/2));
+
+        k3=h*f((x0+h/2),(y0+k2/2));
+
+        k4=h*f((x0+h),(y0+k3));
+
+        k=(k1+2*k2+2*k3+k4)/6;
+
+        yn=y0+k;
+
+        printf("%.4f\t%.4f\t%.4f\n",x0,y0,yn);
+
+        x0=x0+h;
+
+        y0=yn;
+    }
+
+    printf("\nValue of y at x = %.2f is %.3f",xn,yn);
+
+    return;
+}
+</xmp>
+
+<h3>Example Input</h3>
+<xmp>
+Enter Initial Condition
+
+x0 = 1
+
+y0 = 1
+
+Enter calculation point xn = 2
+
+Enter number of steps: 5
+</xmp>
+
+<h3>Output</h3>
+<xmp>
+x0      y0      yn
+
+1.0000  1.0000  0.9800
+1.2000  0.9800  0.9203
+1.4000  0.9203  0.8221
+1.6000  0.8221  0.6889
+1.8000  0.6889  0.5268
+
+Value of y at x = 2.00 is 0.527
+</xmp>
+</div>
+
+<hr>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+</body>
+</html>

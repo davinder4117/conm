@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PROGRAM 8: NEWTON FORWARD DIFFERENCES TABLE - CONM Programs</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f8f6;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+    }
+
+    center {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        color: #0b3d3a;
+        font-size: 30px;
+    }
+
+    h2 {
+        color: #14746f;
+    }
+
+    h3 {
+        color: #444;
+    }
+
+    a {
+        display: inline-block;
+        background-color: #14746f;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin: 3px;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        background-color: #2a9d8f;
+    }
+
+    body > h2 {
+        background-color: white;
+        padding: 12px;
+        border-left: 5px solid #14746f;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+
+    h3 {
+        margin-left: 10px;
+    }
+
+    xmp {
+        background-color: #e3f2ef;
+        color: #222;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 7px;
+        border: 1px solid #bfdcd6;
+        overflow-x: auto;
+        font-family: Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background-color: #a8d0c8;
+        margin: 30px 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+</style>
+
+<style>
+    .page { background:#fff; padding:20px; border-radius:10px; }
+    .nav { text-align:center; margin: 10px 0 20px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+<div class="page">
+<h2>PROGRAM 8: NEWTON FORWARD DIFFERENCES TABLE</h2>
+<h3>C Program</h3>
+<xmp>
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+    int i,j,n;
+    float x[20],y[20][20];
+
+    clrscr();
+
+    printf("\nEnter the value of N:");
+    scanf("%d",&n);
+
+    printf("\nEnter pairs of (x,y):\n");
+
+    for(i=0;i<n;i++)
+    {
+        scanf("%f%f",&x[i],&y[i][0]);
+    }
+
+    for(j=1;j<n;j++)
+    {
+        for(i=0;i<n-j;i++)
+        {
+            y[i][j]=y[i+1][j-1]-y[i][j-1];
+        }
+    }
+
+    printf("\nNEWTON FORWARD DIFFERENCE TABLE\n");
+
+    printf("\nX\tY");
+
+    for(i=1;i<n;i++)
+    {
+        printf("\tD%d",i);
+    }
+
+    for(i=0;i<n;i++)
+    {
+        printf("\n%f",x[i]);
+
+        for(j=0;j<n-i;j++)
+        {
+            printf("\t%f",y[i][j]);
+        }
+    }
+
+    getch();
+}
+</xmp>
+
+<h3>Example Input</h3>
+<xmp>
+Enter the value of N:
+4
+
+Enter pairs of (x,y):
+
+0 1
+1 2
+2 5
+3 10
+</xmp>
+
+<h3>Output</h3>
+<xmp>
+NEWTON FORWARD DIFFERENCE TABLE
+
+X       Y       D1      D2      D3
+
+0       1       1       2       0
+1       2       3       2
+2       5       5
+3       10
+</xmp>
+</div>
+
+<hr>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PROGRAM 13: TRAPEZOIDAL RULE - CONM Programs</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f8f6;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+    }
+
+    center {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        color: #0b3d3a;
+        font-size: 30px;
+    }
+
+    h2 {
+        color: #14746f;
+    }
+
+    h3 {
+        color: #444;
+    }
+
+    a {
+        display: inline-block;
+        background-color: #14746f;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin: 3px;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        background-color: #2a9d8f;
+    }
+
+    body > h2 {
+        background-color: white;
+        padding: 12px;
+        border-left: 5px solid #14746f;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+
+    h3 {
+        margin-left: 10px;
+    }
+
+    xmp {
+        background-color: #e3f2ef;
+        color: #222;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 7px;
+        border: 1px solid #bfdcd6;
+        overflow-x: auto;
+        font-family: Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background-color: #a8d0c8;
+        margin: 30px 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+</style>
+
+<style>
+    .page { background:#fff; padding:20px; border-radius:10px; }
+    .nav { text-align:center; margin: 10px 0 20px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+<div class="page">
+<h2>PROGRAM 13: TRAPEZOIDAL RULE</h2>
+<h3>C Program</h3>
+<xmp>
+#include<stdio.h>
+
+float f(float x)
+{
+    return 1.0/(1.0+x*x*x*x);
+}
+
+int main()
+{
+    int n;
+    int i;
+    float a,b,h;
+    float sum,intg;
+
+    printf("Enter values of a and b: ");
+    scanf("%f%f",&a,&b);
+
+    printf("Enter number of sub-intervals: ");
+    scanf("%d",&n);
+
+    if(a>b || n<1)
+    {
+        printf("Invalid Input.");
+        return 0;
+    }
+
+    h=(b-a)/n;
+    sum=f(a)+f(b);
+
+    for(i=1;i<n;i++)
+    {
+        sum=sum+2*f(a+i*h);
+    }
+
+    intg=(h/2)*sum;
+
+    printf("Integral = %.4f\n",intg);
+
+    return 0;
+}
+</xmp>
+
+<h3>Example Input</h3>
+<xmp>
+Enter values of a and b: 0 1
+
+Enter number of sub-intervals: 4
+</xmp>
+
+<h3>Output</h3>
+<xmp>
+Integral = 0.8617
+</xmp>
+</div>
+
+<hr>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+</body>
+</html>

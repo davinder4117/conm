@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PROGRAM 12: LAGRANGE INTERPOLATION POLYNOMIAL - CONM Programs</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f8f6;
+        color: #333;
+        margin: 20px;
+        line-height: 1.6;
+    }
+
+    center {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        color: #0b3d3a;
+        font-size: 30px;
+    }
+
+    h2 {
+        color: #14746f;
+    }
+
+    h3 {
+        color: #444;
+    }
+
+    a {
+        display: inline-block;
+        background-color: #14746f;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin: 3px;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        background-color: #2a9d8f;
+    }
+
+    body > h2 {
+        background-color: white;
+        padding: 12px;
+        border-left: 5px solid #14746f;
+        border-radius: 5px;
+        margin-top: 25px;
+    }
+
+    h3 {
+        margin-left: 10px;
+    }
+
+    xmp {
+        background-color: #e3f2ef;
+        color: #222;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 7px;
+        border: 1px solid #bfdcd6;
+        overflow-x: auto;
+        font-family: Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background-color: #a8d0c8;
+        margin: 30px 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+</style>
+
+<style>
+    .page { background:#fff; padding:20px; border-radius:10px; }
+    .nav { text-align:center; margin: 10px 0 20px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+<div class="page">
+<h2>PROGRAM 12: LAGRANGE INTERPOLATION POLYNOMIAL</h2>
+<h3>C Program</h3>
+<xmp>
+#include<stdio.h>
+
+int main()
+{
+    int n;
+    int i,j;
+    double sum=0.0;
+    double prod;
+    double xp;
+
+    printf("Enter number of data points: ");
+    scanf("%d",&n);
+
+    if(n<2)
+    {
+        printf("Invalid number of data points.");
+        return 0;
+    }
+
+    double x[n];
+    double y[n];
+
+    printf("Enter the x and y values:\n");
+
+    for(i=0;i<n;i++)
+    {
+        printf("x[%d]: ",i);
+        scanf("%lf",&x[i]);
+
+        printf("y[%d]: ",i);
+        scanf("%lf",&y[i]);
+    }
+
+    printf("Enter the value of x for interpolation: ");
+    scanf("%lf",&xp);
+
+    for(i=0;i<n;i++)
+    {
+        prod=1.0;
+
+        for(j=0;j<n;j++)
+        {
+            if(i!=j)
+            {
+                prod=prod*(xp-x[j])/(x[i]-x[j]);
+            }
+        }
+
+        sum=sum+y[i]*prod;
+    }
+
+    printf("Interpolated value = %.3lf\n",sum);
+
+    return 0;
+}
+</xmp>
+
+<h3>Example Input</h3>
+<xmp>
+Enter number of data points: 4
+
+Enter the x and y values:
+
+x[0]: 0
+y[0]: 1
+
+x[1]: 1
+y[1]: 2
+
+x[2]: 2
+y[2]: 9
+
+x[3]: 3
+y[3]: 28
+
+Enter the value of x for interpolation: 1.5
+</xmp>
+
+<h3>Output</h3>
+<xmp>
+Interpolated value = 4.375
+</xmp>
+</div>
+
+<hr>
+
+<div class="nav"><a href="index.html">&larr; Back to Program List</a></div>
+
+</body>
+</html>
